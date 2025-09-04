@@ -9,7 +9,7 @@ pipeline {
         ECR_REPO_NAME = 'acr-repo'
         IMAGE_TAG = 'latest'  // You can dynamically set the build version
         ECR_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
-        EMAIL = "mohdaqib132@gmail.com"
+        EMAIL = "cab303@yahoo.com"
     }
 
     stages {
@@ -64,16 +64,16 @@ pipeline {
         }
     }
 
-    // post {
-    //     success {
-    //         mail to: "${EMAIL}",
-    //              subject: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) Succeeded",
-    //              body: "Good news! The Jenkins job succeeded."
-    //     }
-    //     failure {
-    //         mail to: "${EMAIL}",
-    //              subject: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) Failed",
-    //              body: "Unfortunately, the Jenkins job failed. Please check the logs."
-    //     }
-    // }
+    post {
+        success {
+            mail to: "${EMAIL}",
+                 subject: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) Succeeded",
+                 body: "Good news! The Jenkins job succeeded."
+        }
+        failure {
+            mail to: "${EMAIL}",
+                 subject: "Job '${env.JOB_NAME}' (#${env.BUILD_NUMBER}) Failed",
+                 body: "Unfortunately, the Jenkins job failed. Please check the logs."
+        }
+    }
 }
